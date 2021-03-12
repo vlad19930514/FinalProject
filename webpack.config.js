@@ -1,7 +1,17 @@
 const path = require('path')
+const HTMLWebpackPlugin = require('html-webpack-plugin')
 
 const NODE_ENV = process.env.NODE_ENV
-module.export = {
+const IS_DEV = NODE_ENV === 'development'
+const IS_PROD = NODE_ENV === 'production'
+
+function setupDevtool(){
+  if(IS_DEV) return 'eval'
+  if(IS_PROD) return false
+}
+
+
+module.exports = {
   resolve:{
     extensions:['.js','.jsx', '.ts','.tsx', '.json']
 },
@@ -25,5 +35,14 @@ module.export = {
           },
         ],
       },
-    
+      plugins: [new HTMLWebpackPlugin({template: path.resolve(__dirname, 'index.html')})],
+
+      devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        compress: true,
+        port: 3000,
+        hot:IS_DEV,
+        open:true
+      },
+      devtool: setupDevtool(),
 }
