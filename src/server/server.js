@@ -1,7 +1,7 @@
 
 import  express from 'express'
 import  ReactDOMServer from 'react-dom/server.js';
-import Header from '../shared/Header.jsx';
+import {Header} from '../shared/Header.jsx';
 import {indexTemplate} from './indexTemplate'
 
 
