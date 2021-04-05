@@ -1,10 +1,11 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import passport from 'passport'
-import GoogleStrategy, {Strategy} from 'passport-google-oauth20'
+import asyncHandler from 'express-async-handler'
 
 
-import mongoose from 'mongoose'
+
+
 const router = express.Router()
 
 
@@ -23,6 +24,7 @@ scope:['profile','email']
 
 router.get('/google/callback', passport.authenticate('google'),
 (req, res) =>{
+    
     res.redirect('/')
 } );
 
@@ -32,11 +34,15 @@ router.get('/logout', (req, res) => {
     res.redirect('/')
 
 } );
-router.get('/current_user', (req, res) => { res.send(
+router.get('/current_user', asyncHandler( async (req, res) => {
+    
+ 
+    console.log(req.user.MainWords.length)
+    res.send(
   
    
     
-    req.user)} );
+    req.user)} ));
 
 
 
