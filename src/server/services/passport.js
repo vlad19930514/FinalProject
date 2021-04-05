@@ -5,7 +5,7 @@ import dotenv from 'dotenv'
 import User from '../models/userModel'
 
 
-console.log('123')
+
 dotenv.config()
 
 
@@ -31,10 +31,7 @@ passport.use(
    
 },
  async (accessToken,refreshToken, profile, done) => {
-     console.log(accessToken)
-    console.log(profile)
-     console.log(profile._json.name)
-     console.log(profile._json.email)
+    
      const existingUser = await User.findOne({googleId: profile.id}) 
      
          if(existingUser) {

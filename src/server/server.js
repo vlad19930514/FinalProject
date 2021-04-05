@@ -6,6 +6,8 @@ import {indexTemplate} from './indexTemplate'
 import  './services/passport'
 import cookieSession from 'cookie-session'
 import authRoutes from './routes/authRoutes.js'
+import userWordsRoutes from './routes/userWordsRoutes.js'
+
 import dotenv from 'dotenv'
 import connectDB from './config/db.js'
 
@@ -46,6 +48,7 @@ app.use(
   
 
 app.use('/auth',authRoutes)
+app.use('/auth/words',userWordsRoutes)
 
 
 
